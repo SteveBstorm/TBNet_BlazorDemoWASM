@@ -1,0 +1,12 @@
+﻿@page "/demo2"
+<h3 class="maclass">Cycle de vie d'un composant</h3>
+<p>Valeur : @Value</p>
+<p><button @onclick="Increment" class="btn btn-success">++</button></p>
+
+<hr />
+<Cible ValueFromParent="Value"
+       ResponseEvent="ReceiveResponse"    
+></Cible>
+
+<hr />
+<p>Réponse de l'enfant : @ValueFromChildren</p>

@@ -1,0 +1,15 @@
+﻿@page "/demo1"
+<h3>Demo1</h3>
+
+<p>Valeur de la propriété : @Value</p>
+@*Lecture de propriété : Binding One Way*@
+
+<button @onclick="Increment" disabled="@(Value > 50)">++</button>
+<button @onclick="() => Retrait(5)">--</button>
+@*Event Binding => Liaison d'un event à une methode*@
+@*Attribute binding => Lier une prop ou une methode à un attribut html*@
+
+<p>
+    <input @bind-value="Value" />
+</p>
+@*binding Two Ways : Lecture/écriture de props*@
