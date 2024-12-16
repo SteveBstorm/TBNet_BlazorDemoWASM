@@ -1,0 +1,62 @@
+﻿@page "/demo5"
+<h3>Demo5</h3>
+
+<EditForm Model="MyForm" OnValidSubmit="Submit">
+    @* <DataAnnotationsValidator /> *@
+    <ObjectGraphDataAnnotationsValidator />
+    <div>
+        <label>Id</label>
+        <InputNumber class="form-control" @bind-Value="MyForm.Id"></InputNumber>
+        <ValidationMessage style="color:red;" For="@(() => MyForm.Id)" />
+    </div>
+    <div>
+        <label>Nom</label>
+        <InputText class="form-control" @bind-Value="MyForm.Nom"></InputText>
+        <ValidationMessage style="color:red;" For="@(() => MyForm.Nom)" />
+    </div>
+    <div>
+        <label>Prenom</label>
+        <InputText class="form-control" @bind-Value="MyForm.Prenom"></InputText>
+        <ValidationMessage style="color:red;" For="@(() => MyForm.Prenom)" />
+    </div>
+    <div>
+        <label>Date de naissance</label>
+        <InputDate class="form-control" @bind-Value="MyForm.DateNaissance"></InputDate>
+        <ValidationMessage style="color:red;" For="@(() => MyForm.DateNaissance)" />
+    </div>
+    <div>
+        <label>Email</label>
+        <InputText type="email" class="form-control" @bind-Value="MyForm.Email"></InputText>
+        <ValidationMessage style="color:red;" For="@(() => MyForm.Email)" />
+    </div>
+    <div>
+        <label>Genre</label>
+        <InputSelect class="form-control" @bind-Value="MyForm.Genre">
+            @foreach (string g in listeGenre)
+            {
+                <option value="@g">@g</option>
+            }
+        </InputSelect>
+    </div>
+    <div>
+        <label>Est administrateur ?</label>
+        <InputRadioGroup @bind-Value="MyForm.IsAdmin">
+            Oui <InputRadio Value="true"></InputRadio>
+            Non <InputRadio Value="false"></InputRadio>
+        </InputRadioGroup>
+    </div>
+    <hr />
+    <h4> Job</h4>
+    <div>
+        <label>Date de début</label>
+        <InputDate class="form-control" @bind-Value="MyForm.Emploi.StartDate"></InputDate>
+        <ValidationMessage style="color:red;" For="@(() => MyForm.Emploi.StartDate)" />
+    </div>
+    <div>
+        <label>Intitulé</label>
+        <InputText type="email" class="form-control" @bind-Value="MyForm.Emploi.Label"></InputText>
+        <ValidationMessage style="color:red;" For="@(() => MyForm.Emploi.Label)" />
+    </div>
+    <button class="btn btn-outline-success">Valider</button>
+    <ValidationSummary />
+</EditForm>
