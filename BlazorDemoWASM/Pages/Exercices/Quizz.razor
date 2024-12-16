@@ -1,0 +1,10 @@
+﻿<h4>Bonjour @Prenom, voici la question N° @(compteur +1)</h4>
+<p>@Questions[compteur]</p>
+<p>
+    <button @onclick="@(() => Repondre("Oui"))"
+            class="btn btn-sm btn-success">Oui</button>
+    <button @onclick="@(() => Repondre("Non"))"
+            class="btn btn-sm btn-danger">
+        Non
+    </button>
+</p>
