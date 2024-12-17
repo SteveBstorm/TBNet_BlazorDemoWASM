@@ -1,0 +1,43 @@
+﻿@page "/movie"
+@using BlazorDemoWASM.Models
+<h3>Movie Manager</h3>
+
+<div class="content">
+    <div class="card w-50">
+        <div class="card-header">Liste des films</div>
+        <div class="card-body">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Titre</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (Movie m in Movies)
+                    {
+                        <tr>
+                            <td>@m.Title</td>
+                            <td>
+                                <button class="btn btn-info btn-sm" @onclick="@(() => Detail(m))">Detail</button>
+                                <button class="btn btn-danger btn-sm" @onclick="@(() => Delete(m))">Supprimer</button>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div>
+        <div class="Formulaire">
+            <AddMovie RegisterEvent="Add"></AddMovie>
+        </div>
+        @if(SelectedMovie != null)
+        {
+            <div class="Detail">
+                <DetailMovie CurrentMovie="SelectedMovie"></DetailMovie>
+            </div>
+        }
+        
+    </div>
+</div>
