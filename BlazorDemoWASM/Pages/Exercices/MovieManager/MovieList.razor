@@ -1,5 +1,6 @@
 ﻿@page "/movie"
 @using BlazorDemoWASM.Models
+@attribute [Authorize(Roles ="Admin")]
 <h3>Movie Manager</h3>
 
 <div class="content">

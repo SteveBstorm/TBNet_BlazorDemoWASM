@@ -1,4 +1,5 @@
 ﻿@page "/demo2"
+@attribute [Authorize(Roles = "Admin")]
 <h3 class="maclass">Cycle de vie d'un composant</h3>
 <p>Valeur : @Value</p>
 <p><button @onclick="Increment" class="btn btn-success">++</button></p>

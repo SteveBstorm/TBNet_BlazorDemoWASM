@@ -1,0 +1,13 @@
+﻿@page "/login"
+@* @attribute [AllowAnonymous] *@
+
+<h3>Login</h3>
+<EditForm Model="loginForm" OnValidSubmit="SubmitLogin">
+    <DataAnnotationsValidator />
+    <p>Email : <InputText type="email" @bind-Value="loginForm.Email"></InputText></p>
+    <p>Password : <InputText type="password" @bind-Value="loginForm.Password"></InputText></p>
+    <button>Valider</button>
+</EditForm>
+@code {
+
+}
