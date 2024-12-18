@@ -1,5 +1,6 @@
 ﻿using BlazorDemoWASM.Models;
 using Microsoft.AspNetCore.Components;
+using System.Text.Json;
 
 namespace BlazorDemoWASM.Pages.Exercices.MovieManager
 {
@@ -12,6 +13,7 @@ namespace BlazorDemoWASM.Pages.Exercices.MovieManager
 
         private void OnValidSubmit()
         {
+            Console.WriteLine(JsonSerializer.Serialize(NewMovie));
             RegisterEvent.InvokeAsync(this.NewMovie);
         }
     }

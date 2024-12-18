@@ -1,6 +1,6 @@
 ﻿@page "/movie"
 @using BlazorDemoWASM.Models
-@attribute [Authorize(Roles ="Admin")]
+@attribute [Authorize(Roles = "Admin")]
 <h3>Movie Manager</h3>
 
 <div class="content">
@@ -21,7 +21,11 @@
                             <td>@m.Title</td>
                             <td>
                                 <button class="btn btn-info btn-sm" @onclick="@(() => Detail(m))">Detail</button>
-                                <button class="btn btn-danger btn-sm" @onclick="@(() => Delete(m))">Supprimer</button>
+                                <AuthorizeView Roles="Admin">
+                                    <Authorized>
+                                        <button class="btn btn-danger btn-sm" @onclick="@(() => Delete(m))">Supprimer</button>
+                                    </Authorized>
+                                </AuthorizeView>
                             </td>
                         </tr>
                     }
@@ -31,14 +35,18 @@
     </div>
     <div>
         <div class="Formulaire">
-            <AddMovie RegisterEvent="Add"></AddMovie>
+            <AuthorizeView Roles="Admin">
+                <Authorized>
+                    <AddMovie RegisterEvent="Add"></AddMovie>
+                </Authorized>
+            </AuthorizeView>
         </div>
-        @if(SelectedMovie != null)
+        @if (SelectedMovie != null)
         {
             <div class="Detail">
                 <DetailMovie CurrentMovie="SelectedMovie"></DetailMovie>
             </div>
         }
-        
+
     </div>
 </div>

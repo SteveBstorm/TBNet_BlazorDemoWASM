@@ -8,11 +8,29 @@ var builder = WebAssemblyHostBuilder.CreateDefault(args);
 builder.RootComponents.Add<App>("#app");
 builder.RootComponents.Add<HeadOutlet>("head::after");
 
-builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri("https://localhost:7010/api/") });
+builder.Services.AddTransient<TokenInterceptor>();
+
+builder.Services.AddHttpClient("clientWithToken", sp =>
+{
+    new HttpClient();
+    sp.BaseAddress = new Uri("https://localhost:7010/api/");
+}).AddHttpMessageHandler<TokenInterceptor>();
+
+//builder.Services.AddHttpClient("client2", sp =>
+//{
+//    new HttpClient { BaseAddress = new Uri("https://localhost:7010/api/") };
+//}).AddHttpMessageHandler<TokenInterceptor>();
+
+builder.Services.AddScoped<HttpClient>(sp => sp.GetRequiredService<IHttpClientFactory>()
+                                    .CreateClient("clientWithToken"));
+
+
 
 builder.Services.AddAuthorizationCore();
 builder.Services.AddSingleton<AuthenticationStateProvider, MyAuthStateProvider>();
 /*
+
+ * 
    Pour intégrer l'authentification 
    1) Créer un composant Login permettant de se connecter et récupérer le token dans l'api
    2) Créer le stateProvider qui vérifie l'existence du token et transmet l'utilisateur connecté à l'app
