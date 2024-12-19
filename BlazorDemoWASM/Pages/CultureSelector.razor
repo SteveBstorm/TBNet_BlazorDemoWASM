@@ -1,0 +1,23 @@
+﻿@using System.Globalization
+@inject IJSRuntime js
+@inject NavigationManager nav
+
+<select class="form-control" @bind="Culture">
+    <option value="en-US">English</option>
+    <option value="fr-BE">Francais</option>
+</select> 
+
+@code {
+    public CultureInfo Culture
+    {
+        get{ return CultureInfo.CurrentCulture; }
+        set
+        {
+            if(CultureInfo.CurrentCulture != value)
+            {
+                js.InvokeVoidAsync("localStorage.setItem", "blazorCulture", value.Name);
+                nav.NavigateTo(nav.Uri, forceLoad: true);
+            }
+        }
+    }
+}
