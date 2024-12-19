@@ -1,0 +1,18 @@
+﻿@page "/chat"
+<h3>MyChat</h3>
+
+Votre Message :
+<input type="text" class="form-control" @bind-value="NewMessage" />
+<p>
+    <button @onclick="SendNewMessage">Envoyer</button>
+    <button @onclick="JoinGroup">Rejoindre Groupe</button>
+    <button @onclick="SendToGroup">Envoyer groupe</button>
+
+</p>
+<hr />
+<ul>
+    @foreach (string m in MessageList)
+    {
+        <li>@m</li>
+    }
+</ul>
